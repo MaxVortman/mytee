@@ -11,29 +11,28 @@ public class Cli {
 
     private CommandLine line;
     private HelpFormatter helpFormatter = new HelpFormatter();
+    private Options options;
 
     private final String HELP_USAGE = "mytee [ -a ] [ -i ] [ File ... ]";
     private final String HELP_HEADER = "Arguments:\n[ File ... ] One or more files that will receive the tee output";
 
-
-    public Cli(String[] args){
-
-
-        Options options = ConfigureOptions();
-        Parse(args, options);
-        CheckForHelpOption(options);
+    public Cli(){
+        options = configureOptions();
     }
 
-    private void CheckForHelpOption(Options options) {
-        if(line.hasOption(HELP))
-            PrintHelp(options);
+    private boolean tryPrintHelpOption() {
+        if(line.hasOption(HELP)) {
+            printHelp();
+            return true;
+        }
+        return false;
     }
 
-    private void PrintHelp(Options options){
+    private void printHelp(){
         helpFormatter.printHelp(HELP_USAGE, HELP_HEADER, options, null);
     }
 
-    private Options ConfigureOptions() {
+    private Options configureOptions() {
         Options options = new Options();
         options.addOption("a", APPEND, false, "Appends the output to the end of File instead of writing over it.");
         options.addOption("i", IGNORE, false, "Ignores interrupts.");
@@ -41,18 +40,30 @@ public class Cli {
         return options;
     }
 
-    private void Parse(String[] args, Options options) {
+    public boolean tryParse(String[] args) {
         CommandLineParser parser = new DefaultParser();
 
         try {
             line = parser.parse(options, args);
-
+            return !tryPrintHelpOption();
         } catch (ParseException e) {
             System.out.println("Wrong options!");
-            PrintHelp(options);
+            printHelp();
             e.printStackTrace();
+            return false;
         }
     }
 
-    
+    public boolean hasAppendOption(){
+        return line.hasOption(APPEND);
+    }
+
+    public boolean hasIgnoreOption(){
+        return line.hasOption(IGNORE);
+    }
+
+    public String[] getFilePaths(){
+        return line.getArgs();
+    }
+
 }
