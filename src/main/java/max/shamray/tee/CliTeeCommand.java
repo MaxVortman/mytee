@@ -1,28 +1,36 @@
 package max.shamray.tee;
 
+import java.io.FileNotFoundException;
 import java.io.OutputStream;
+import java.nio.file.InvalidPathException;
+import java.util.List;
 
 public class CliTeeCommand implements ITeeCommandObject {
 
-    private Cli cli;
+    private boolean isAppend;
+    private boolean isIgnore;
+    private List<OutputStream> fileStreams;
 
-    public CliTeeCommand(Cli cli){
-        this.cli = cli;
+    public CliTeeCommand(Cli cli) throws FileNotFoundException, InvalidPathException {
+        isAppend = cli.hasAppendOption();
+        isIgnore = cli.hasIgnoreOption();
+        fileStreams = FileStreamCreator.Create(cli.getFilePaths(), isAppend, isIgnore);
+
     }
 
 
     @Override
-    public OutputStream[] getFileStreams() {
-        return new OutputStream[0];
+    public List<OutputStream> getFileStreams() {
+        return fileStreams;
     }
 
     @Override
     public boolean isAppend() {
-        return false;
+        return isAppend;
     }
 
     @Override
     public boolean isIgnoreInterrupts() {
-        return false;
+        return isIgnore;
     }
 }

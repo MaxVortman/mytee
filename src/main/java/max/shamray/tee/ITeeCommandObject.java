@@ -1,9 +1,10 @@
 package max.shamray.tee;
 
 import java.io.OutputStream;
+import java.util.List;
 
 public interface ITeeCommandObject {
-    public OutputStream[] getFileStreams();
-    public boolean isAppend();
-    public boolean isIgnoreInterrupts();
+    List<OutputStream> getFileStreams();
+    boolean isAppend();
+    boolean isIgnoreInterrupts();
 }
