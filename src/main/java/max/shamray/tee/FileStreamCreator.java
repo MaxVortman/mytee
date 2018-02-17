@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileStreamCreator {
-    public static List<OutputStream> Create(String[] fileStringPaths, boolean isAppend, boolean isIgnoreErrors) throws FileNotFoundException, InvalidPathException {
+    public static List<OutputStream> create(String[] fileStringPaths, boolean isAppend, boolean isIgnoreErrors) throws FileNotFoundException, InvalidPathException {
 
-        List<Path> filePaths = ConvertToPath(fileStringPaths, isIgnoreErrors);
+        List<Path> filePaths = convertToPath(fileStringPaths, isIgnoreErrors);
         List<OutputStream> outputStreams = new ArrayList<>();
 
         for (Path path : filePaths) {
@@ -28,7 +28,7 @@ public class FileStreamCreator {
         return outputStreams;
     }
 
-    private static List<Path> ConvertToPath(String[] filePaths, boolean isIgnoreErrors) throws InvalidPathException {
+    private static List<Path> convertToPath(String[] filePaths, boolean isIgnoreErrors) throws InvalidPathException {
         List<Path> paths = new ArrayList<>();
         for (String path : filePaths) {
             try {

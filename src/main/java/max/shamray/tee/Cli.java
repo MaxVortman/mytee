@@ -5,16 +5,16 @@ import org.apache.commons.cli.*;
 public class Cli {
 
 
-    private final String HELP = "help";
-    private final String APPEND = "append";
-    private final String IGNORE = "ignore";
+    private static final String HELP = "help";
+    private static final String APPEND = "append";
+    private static final String IGNORE = "ignore";
 
     private CommandLine line;
     private HelpFormatter helpFormatter = new HelpFormatter();
     private Options options;
 
-    private final String HELP_USAGE = "mytee [ -a ] [ -i ] [ File ... ]";
-    private final String HELP_HEADER = "Arguments:\n[ File ... ] One or more files that will receive the tee output";
+    private static final String HELP_USAGE = "mytee [ -a ] [ -i ] [ File ... ]";
+    private static final String HELP_HEADER = "Arguments:\n[ File ... ] One or more files that will receive the tee output";
 
     public Cli(){
         options = configureOptions();

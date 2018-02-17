@@ -14,7 +14,7 @@ public class CliTeeCommand implements ITeeCommandObject {
     public CliTeeCommand(Cli cli) throws FileNotFoundException, InvalidPathException {
         isAppend = cli.hasAppendOption();
         isIgnore = cli.hasIgnoreOption();
-        fileStreams = FileStreamCreator.Create(cli.getFilePaths(), isAppend, isIgnore);
+        fileStreams = FileStreamCreator.create(cli.getFilePaths(), isAppend, isIgnore);
 
     }
 
