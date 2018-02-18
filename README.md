@@ -12,4 +12,8 @@ Arguments:
 * ``-i,--ignore``   Ignores interrupts.
 
 ## Build
-build.sh
+build.sh / build.bat
+
+*P.S. Don't forget add permission for execute.*
+
+*P.P.S and install maven.*
