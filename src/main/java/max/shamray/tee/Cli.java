@@ -13,8 +13,8 @@ public class Cli {
     private HelpFormatter helpFormatter = new HelpFormatter();
     private Options options;
 
-    private static final String HELP_USAGE = "mytee [ -a ] [ -i ] [ File ... ]";
-    private static final String HELP_HEADER = "Arguments:\n[ File ... ] One or more files that will receive the tee output";
+    private static final String HELP_USAGE = "java -jar mytee.jar [ -a ] [ -i ] [ File ... ]";
+    private static final String HELP_HEADER = "\tArguments:\n[ File ... ] One or more files that will receive the tee output";
 
     public Cli(){
         options = configureOptions();
